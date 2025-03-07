@@ -4,7 +4,7 @@ pandas==2.2.2
 scipy==1.15.1
 
 # 数据获取和分析库
-akshare==1.15.87
+akshare==1.16.16
 tqdm==4.67.1
 
 # GUI库
