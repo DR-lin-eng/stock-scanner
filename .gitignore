@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+*.log
+*.sqlite3
+*.db
+.DS_Store
+.idea/
+.vscode/
+.coverage
+htmlcov/
+*.cache/
+*.pytest_cache/
+
+# Build
+build/
+dist/
+
+# Byte-compiled / optimized / DLL files
+*.pyo
+*.pyd
+
+# OS
+Thumbs.db

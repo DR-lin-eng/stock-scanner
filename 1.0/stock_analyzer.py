@@ -47,6 +47,20 @@ class StockAnalyzer:
                                   end_date=end_date,
                                   adjust="qfq")
             
+            # 如果返回为空，尝试添加市场前缀（兼容 akshare 新旧用法）
+            if df is None or df.empty:
+                try:
+                    code = stock_code
+                    if not (code.startswith('sh') or code.startswith('sz')):
+                        prefix = 'sh' if str(code).startswith('6') else 'sz'
+                        code = f"{prefix}{code}"
+                    df = ak.stock_zh_a_hist(symbol=code,
+                                           start_date=start_date,
+                                           end_date=end_date,
+                                           adjust="qfq")
+                except Exception:
+                    pass
+            
             # 重命名列名以匹配分析需求
             df = df.rename(columns={
                 "日期": "date",
@@ -54,7 +68,8 @@ class StockAnalyzer:
                 "收盘": "close",
                 "最高": "high",
                 "最低": "low",
-                "成交量": "volume"
+                "成交量": "volume",
+                "trade_date": "date"
             })
             
             # 确保日期格式正确
@@ -65,7 +80,7 @@ class StockAnalyzer:
             df[numeric_columns] = df[numeric_columns].apply(pd.to_numeric, errors='coerce')
             
             # 删除空值
-            df = df.dropna()
+            df = df.dropna(subset=['date'] + numeric_columns)
             
             return df.sort_values('date')
             

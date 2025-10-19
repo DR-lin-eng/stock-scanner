@@ -328,17 +328,32 @@ class EnhancedWebStockAnalyzer:
                 # A股数据
                 stock_data = ak.stock_zh_a_hist(
                     symbol=stock_code,
-                    period="daily",
                     start_date=start_date,
                     end_date=end_date,
                     adjust="qfq"
                 )
+                if stock_data.empty:
+                    # 尝试使用市场前缀的代码再次获取（兼容 akshare 新旧用法）
+                    try:
+                        if not (stock_code.startswith('sh') or stock_code.startswith('sz')):
+                            prefix = 'sh' if str(stock_code).startswith('6') else 'sz'
+                            alt_code = f"{prefix}{stock_code}"
+                        else:
+                            alt_code = stock_code
+                        if alt_code != stock_code:
+                            stock_data = ak.stock_zh_a_hist(
+                                symbol=alt_code,
+                                start_date=start_date,
+                                end_date=end_date,
+                                adjust="qfq"
+                            )
+                    except Exception:
+                        pass
             elif market == 'hk_stock':
                 # 港股数据
                 try:
                     stock_data = ak.stock_hk_hist(
                         symbol=stock_code,
-                        period="daily",
                         start_date=start_date,
                         end_date=end_date,
                         adjust="qfq"
@@ -355,10 +370,8 @@ class EnhancedWebStockAnalyzer:
                 try:
                     stock_data = ak.stock_us_hist(
                         symbol=stock_code,
-                        period="daily",
                         start_date=start_date,
-                        end_date=end_date,
-                        adjust="qfq"
+                        end_date=end_date
                     )
                 except Exception as e:
                     self.logger.warning(f"使用美股历史数据接口失败: {e}，尝试备用接口...")
