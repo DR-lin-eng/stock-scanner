@@ -1,0 +1,34 @@
+# Flask Web框架
+Flask>=2.2,<3.1
+Flask-CORS>=4.0,<5.0
+Werkzeug>=2.2,<3.1
+
+# 数据处理（锁定numpy主版本，避免2.x兼容问题）
+pandas>=2.0,<3.0
+numpy>=1.24,<2.0
+
+# 股票数据获取
+akshare>=1.13,<2.0
+
+# AI接口支持
+openai>=0.28,<2.0
+anthropic>=0.20,<1.0
+zhipuai>=2.0,<3.0
+
+# HTTP请求（OpenAI兼容接口与SiliconFlow JSON模式依赖）
+requests>=2.31,<3.0
+urllib3>=1.26,<3.0
+
+# 其他工具
+python-dateutil>=2.8
+pytz>=2023.3
+Jinja2>=3.1,<4.0
+MarkupSafe>=2.1,<3.0
+itsdangerous>=2.1,<3.0
+click>=8.1,<9.0
+
+# 性能优化
+gunicorn>=21,<23
+
+# 开发和调试（可选）
+python-dotenv>=1.0,<2.0

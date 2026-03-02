@@ -1,0 +1,83 @@
+{
+    "api_keys": {
+        "openai": "sk-xxxxx",
+        "anthropic": "",
+        "zhipu": "",
+        "siliconflow": "",
+        "notes": "请填入您的API密钥"
+    },
+    "ai": {
+        "model_preference": "openai",
+        "models": {
+            "openai": "gpt-4.1-nano",
+            "anthropic": "claude-3-haiku-20240307",
+            "zhipu": "chatglm_turbo",
+            "siliconflow": "Qwen/Qwen2.5-7B-Instruct"
+        },
+        "max_tokens": 4000,
+        "temperature": 0.7,
+        "api_base_urls": {
+            "openai": "http://192.168.3.23:3001/v1",
+            "siliconflow": "https://api.siliconflow.cn/v1",
+            "notes": "如使用中转API，修改上述URL"
+        },
+        "json_mode": {
+            "enabled": false,
+            "provider": "siliconflow",
+            "model": "Qwen/Qwen2.5-7B-Instruct",
+            "temperature": 0.2,
+            "max_tokens": 1800,
+            "max_news_items": 30,
+            "notes": "启用后使用JSON模式分析新闻；provider/model留空时复用当前结论模型"
+        }
+    },
+    "analysis_weights": {
+        "technical": 0.4,
+        "fundamental": 0.4,
+        "sentiment": 0.2,
+        "notes": "权重总和应为1.0"
+    },
+    "cache": {
+        "price_hours": 1,
+        "fundamental_hours": 6,
+        "news_hours": 2,
+        "invalid_symbol_minutes": 30,
+        "akshare_endpoint_cooldown_seconds": 90
+    },
+    "streaming": {
+        "enabled": true,
+        "show_thinking": false,
+        "delay": 0.05
+    },
+    "analysis_params": {
+        "max_news_count": 100,
+        "technical_period_days": 365,
+        "financial_indicators_count": 25,
+        "main_prompt_news_max_items": 12,
+        "main_prompt_news_max_chars": 1200
+    },
+    "web_auth": {
+        "enabled": true,
+        "password": "your_password_here",
+        "session_timeout": 3600,
+        "notes": "Web界面密码鉴权配置：enabled=是否启用，password=访问密码，session_timeout=会话超时时间(秒)"
+    },
+    "logging": {
+        "level": "INFO",
+        "file": "stock_analyzer.log"
+    },
+    "data_sources": {
+        "akshare_token": "",
+        "backup_sources": ["akshare"]
+    },
+    "ui": {
+        "theme": "default",
+        "language": "zh_CN",
+        "window_size": [1200, 800]
+    },
+    "_metadata": {
+        "version": "3.2.0-web-streaming-json",
+        "created": "2024-06-17T10:00:00",
+        "description": "Web版AI股票分析系统配置文件（支持港美股、SiliconFlow JSON模式，含密码鉴权）"
+    }
+}
