@@ -13,6 +13,7 @@
 - `flask_web_server.py`：Web 服务、SSE 推送、接口层
 - `web_stock_analyzer.py`：行情/基本面/新闻分析与 AI 总结引擎
 - `config - 示例.json`：配置示例
+- `config-readme.md`：配置填写指南（逐项说明 + 可复制模板）
 
 ## 1. 快速开始（本地运行）
 
@@ -48,6 +49,10 @@ cp "config - 示例.json" config.json
 - `ai.api_base_urls`：如有中转地址可在此配置
 
 如果只想先验证流程，也可以不填 API Key，系统会降级为规则分析（无 LLM 深度文本）。
+
+详细配置说明请参考：
+
+- `config-readme.md`
 
 ### 1.4 启动服务
 
