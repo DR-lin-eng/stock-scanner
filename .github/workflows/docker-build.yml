@@ -3,7 +3,7 @@ on:
   push:
     branches: [ main ]
     paths:
-      - '2.6 webapp（流式传输测试版）/**'
+      - '3.0 webapp（支持港股美股）/**'
   workflow_dispatch:
 jobs:
   build-and-push:
